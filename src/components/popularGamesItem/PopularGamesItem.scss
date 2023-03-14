@@ -1,0 +1,69 @@
+.popular-game-box {
+  position: relative;
+  padding: 15px 15px 0px 0px;
+
+  .popular-game-item {
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+
+  }
+
+  .popular-game-item:after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .popular-game-item:after {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  &:hover {
+    cursor: pointer;
+    .popular-game-item:after {
+      background: linear-gradient(
+        45deg,
+        rgba(15, 241, 53, 0.6),
+        rgba(0, 0, 0, 0.15)
+      );
+    }
+  }
+
+  .popular-game-text-area {
+    .popular-game-item-rate {
+      position: absolute;
+      right: 25px;
+      bottom: 30px;
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+      width: fit-content;
+      text-shadow: 1px 1px #000000;
+    }
+
+    .popular-game-item-text {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      color: white;
+      text-shadow: 1px 1px #000000;
+
+      p {
+        margin-bottom: 0px;
+      }
+      .game-name {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .game-type {
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
+}
