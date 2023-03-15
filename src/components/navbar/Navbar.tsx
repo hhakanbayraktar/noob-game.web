@@ -14,11 +14,11 @@ const Navbar = () => {
       {isAboveMediumScreens ? (
         <div className="navbar navbar-expand-xl d-flex flex-row justify-content-start">
           <div className="p-4">
-            <img src="http://fisoft.co.uk/img/logo.png" alt="Noob-Game" />
+            <img src="/noobgame.png" alt="Noob-Game" />
           </div>
           <div className="d-flex gap-3">
             <Link to="" >Home</Link>
-            <Link to="/">Games</Link>
+            <Link to="/games">Games</Link>
             <Link to="/">Reviews</Link>
           </div>
         </div>

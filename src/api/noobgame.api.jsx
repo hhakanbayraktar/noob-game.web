@@ -1,22 +1,65 @@
 import publicClient from "./public.client";
-import React from "react";
 
-const apiGet = (endPoint)=>{
-  return async () => {
-    const response = await publicClient
-      .get(endPoint)
-      .then((response) => {
-        return response.data;
-      })
-    return response;
-  }
-}
-
-const noobgameApi = {
-  getList: apiGet("gameList"),
-  topGames: apiGet("topGames"),
-  popularGames: apiGet("popularGames"),
+const noobgameEndpoints = {
+  getList: "gameList",
+  topGames: "topGames",
+  popularGames: "popularGames",
+  lastPlatformGames: ({ id }) => `lastPlatformGames?id=${id}`,
 };
 
+const noobgameApi = {
+  getList: async () => {
+    try {
+      const response = await publicClient
+        .get(noobgameEndpoints.getList)
+        .then((response) => {
+          return response.data;
+        });
+
+        return {response};
+    } catch (err) {
+      return err.message;
+    }
+  },
+  topGames: async () => {
+    try {
+      const response = await publicClient
+        .get(noobgameEndpoints.topGames)
+        .then((response) => {
+          return response.data;
+        });
+
+        return {response};
+    } catch (err) {
+      return err.message;
+    }
+  },
+  popularGames: async () => {
+    try {
+      const response = await publicClient
+        .get(noobgameEndpoints.popularGames)
+        .then((response) => {
+          return response.data;
+        });
+
+        return {response};
+    } catch (err) {
+      return err.message;
+    }
+  },
+  lastPlatformGames: async ({ id }) => {
+    try {
+      const response = await publicClient
+        .get(noobgameEndpoints.lastPlatformGames({ id }))
+        .then((response) => {
+          return response.data;
+        });
+
+      return {response};
+    } catch (err) {
+      return err.message;
+    }
+  },
+};
 
 export default noobgameApi;

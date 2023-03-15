@@ -1,0 +1,36 @@
+.footer {
+  hr {
+    width: calc(100% - 2px);
+    height: 0;
+    border-top: 0.5px solid #ebe9e9;
+    border-bottom: 0.5px solid #ebe9e9;
+  }
+
+  .created {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  a {
+    margin-left: 5px;
+    text-decoration: none;
+    color: #10af65;
+    line-height: 20px;
+
+    .dot {
+      color: black;
+      font-size: 18px;
+      line-height: 20px;
+      vertical-align: middle;
+    }
+
+    .oo {
+      color: rgb(37 41 39);
+    }
+  }
+  a:hover {
+    color: rgb(37 41 39);
+  }
+}

@@ -24,10 +24,10 @@ const Slider = () => {
 
   useEffect(() => {
     const getGameList = async () => {
-      const response = await noobgameApi.topGames();
+      const {response, err} = await noobgameApi.topGames();
 
       if (response) setGames(response);
-      //if (err) toast.error(err);
+      if (err) toast.error(err);
     };
     getGameList();
   }, []);
