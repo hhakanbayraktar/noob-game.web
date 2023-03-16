@@ -1,10 +1,10 @@
-import "./Slider.scss";
 import noobgameApi from "../../api/noobgame.api.jsx";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore,  { Autoplay } from "swiper";
 import "swiper/css";
+import "./Slider.scss";
 
 type gameList = {
   name: string;
@@ -37,10 +37,10 @@ const Slider = () => {
       <Swiper
         grabCursor={true}
         loop={true}
-        /*autoplay={{
+        autoplay={{
             delay: 3000,
             disableOnInteraction: false
-        }}*/
+        }}
         style={{ width: "100%" }}
         slidesPerView={1}
       >

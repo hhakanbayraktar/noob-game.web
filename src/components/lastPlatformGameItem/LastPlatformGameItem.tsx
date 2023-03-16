@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Underscratch from "../underscratch/Underscratch";
 import noobgameApi from "../../api/noobgame.api.jsx";
-import formatDate from "../../utils/date.js";
+import Utils from "../../utils/Utils.js";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon as FA } from "@fortawesome/react-fontawesome";
 import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
@@ -73,7 +73,7 @@ const LastPlatformGameItem = ({ platform }: Props) => {
       </div>
       <div className="game mt-4">
         {lastPlatformGamesList.map((game, index) => (
-          <div className="d-flex justify-content-start mt-2">
+          <div className="d-flex justify-content-start mt-2" key={index}>
             <div className="game-image col-xs-4">
               <img
                 src={`https://images.igdb.com/igdb/image/upload/t_cover_small/${game.cover.value.imageId}.jpg`}
@@ -82,7 +82,7 @@ const LastPlatformGameItem = ({ platform }: Props) => {
             </div>
             <div className="game-body col-xs-8 align-self-center">
               <a href="#">{game.name}</a>
-              <span>{formatDate(game.firstReleaseDate)}</span>
+              <span>{Utils.formatDate(game.firstReleaseDate)}</span>
             </div>
           </div>
         ))}

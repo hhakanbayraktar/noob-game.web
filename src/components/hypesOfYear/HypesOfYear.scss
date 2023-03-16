@@ -1,0 +1,20 @@
+.games-slider {
+    .swiper-button-prev {
+        background-color: rgba(58, 58, 58, 0.788);
+        padding: 30px 30px;
+        left: 1px;
+        top: calc(50% - 15px)
+    }
+    .swiper-button-next {
+        background-color: rgba(58, 58, 58, 0.788);
+        padding: 30px 30px;
+        right: 1px;
+        top: calc(50% - 15px)
+    }
+
+    .swiper-button-prev:after, .swiper-button-next:after {
+        color: white !important;
+        font-size: 32px;
+        font-weight: 700;
+    }
+}

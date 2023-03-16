@@ -8,7 +8,7 @@ const Footer = () => {
         <p>
           CREATED BY
           <a href="#">
-            <span class="marked">
+            <span className="marked">
               N<span className="oo">oo</span>b <span className="dot">·</span> Game
             </span>
           </a>

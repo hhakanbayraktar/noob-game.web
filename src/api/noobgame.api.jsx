@@ -4,6 +4,7 @@ const noobgameEndpoints = {
   getList: "gameList",
   topGames: "topGames",
   popularGames: "popularGames",
+  hypesOfYear: "hypesOfYear",
   lastPlatformGames: ({ id }) => `lastPlatformGames?id=${id}`,
 };
 
@@ -38,6 +39,19 @@ const noobgameApi = {
     try {
       const response = await publicClient
         .get(noobgameEndpoints.popularGames)
+        .then((response) => {
+          return response.data;
+        });
+
+        return {response};
+    } catch (err) {
+      return err.message;
+    }
+  },
+  hypesOfYear: async () => {
+    try {
+      const response = await publicClient
+        .get(noobgameEndpoints.hypesOfYear)
         .then((response) => {
           return response.data;
         });
