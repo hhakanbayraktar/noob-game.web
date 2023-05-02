@@ -1,7 +1,8 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseURL = "https://localhost:7263/";
+//const baseURL = "https://localhost:7263/";
+const baseURL = "http://noobgame.fisoft.co.uk/";
 
 const publicClient = axios.create({
   baseURL,
