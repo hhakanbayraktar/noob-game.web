@@ -1,6 +1,5 @@
 .slider {
   .swiper {
-    height: 700px !important;
     mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1) 80%,
@@ -8,18 +7,79 @@
     );
     .slider-main {
       img {
-        margin-top: 5rem;
+        max-height: 850px;
+        object-fit: cover;
       }
     }
     .slider-text {
       position: absolute;
-      bottom: 30%;
-      left: 15%;
+      top: 60%;
+      left: 5%;
       color: rgb(255, 255, 255);
-      font-weight: bold;
-      font-size: 32px;
       background-color: rgba(66, 66, 66, 0.5);
-      padding: 50px;
+      padding: 25px 40px;
+
+      .game-name {
+        font-weight: bold;
+        font-size: 32px;
+      }
+
+      .release-date {
+        font-size: 20px;
+        margin-bottom: 20px;
+
+        span {
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 992px) {
+  .slider {
+    .swiper {
+      .slider-text {
+        top: 55%;
+        left: 5%;
+        padding: 15px 20px;
+
+        .game-name {
+          font-size: 24px;
+        }
+        .release-date {
+          font-size: 18px;
+        }
+
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 600px) {
+  .slider {
+    .swiper {
+      .slider-text {
+        top: 45%;
+        left: 5%;
+        padding: 15px 20px;
+
+        .game-name {
+          font-size: 15px;
+        }
+        .release-date {
+          font-size: 16px;
+        }
+
+        a {
+          font-size: 14px;
+        }
+      }
     }
   }
 }

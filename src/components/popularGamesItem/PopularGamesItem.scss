@@ -7,7 +7,6 @@
       width: 100%;
       max-width: 100%;
     }
-
   }
 
   .popular-game-item:after {
@@ -17,12 +16,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-  }
-  
-  .popular-game-item:after {
     background: rgba(0, 0, 0, 0.15);
   }
-
   &:hover {
     cursor: pointer;
     .popular-game-item:after {
@@ -36,13 +31,12 @@
 
   .popular-game-text-area {
     .popular-game-item-rate {
+      max-width: 70px;
       position: absolute;
-      right: 25px;
-      bottom: 30px;
-      font-size: 32px;
+      right: 30px;
+      top: 30px;
       font-weight: 700;
       color: white;
-      width: fit-content;
       text-shadow: 1px 1px #000000;
     }
 

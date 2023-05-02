@@ -1,0 +1,30 @@
+.btn-favourite {
+  position: absolute;
+  background-color: transparent !important;
+  border: 0px !important;
+  padding: 0px;
+  color: #10af65;
+  top: 60%;
+  left: -40%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  .favourite {
+    font-size: 30px;
+    width: 70px;
+    height: 70px;
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    color: #10af65;
+  }
+  &:hover {
+    .favourite {
+      color: white;
+      background-color: #10af65;
+    }
+  }
+}

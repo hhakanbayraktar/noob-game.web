@@ -1,0 +1,23 @@
+.btn-noob-game {
+    --bs-btn-padding-x: 20px;
+    --bs-btn-padding-y: 5px;
+    --bs-btn-font-family: ;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    user-select: none;
+    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    
+    border-radius: 0px;
+    background-color: #10af65;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+
+    &:hover {
+    background-color: #00924e;
+    }
+}

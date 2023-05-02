@@ -1,34 +1,82 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.scss";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { FontAwesomeIcon as FA } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import AuthModal from "../authModal/AuthModal";
+import {
+  setAuthModalOpen,
+  setFormType,
+} from "../../redux/reducers/AuthModalSlice.js";
+import { setUser } from "../../redux/reducers/UserSlice";
+
+type State = {
+  user: {
+    user: {
+      token: string;
+      expireOn: Date;
+    };
+  };
+};
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+
+  const { user } = useSelector((state: State) => state.user);
 
   return (
     <div className="menu">
       {isAboveMediumScreens ? (
-        <div className="navbar navbar-expand-xl d-flex flex-row justify-content-start">
-          <div className="p-4">
-            <img src="/noobgame.png" alt="Noob-Game" />
+        <div className="navbar d-flex">
+          <div className="p-2">
+            <Link to="/">
+              <img src="/noobgame.png" alt="Noob-Game" />
+            </Link>
           </div>
-          <div className="d-flex gap-3">
-            <Link to="" >Home</Link>
+          <div className="menu-item p-2 d-flex gap-3">
+            <Link to="/">Home</Link>
             <Link to="/games">Games</Link>
-            <Link to="/">Reviews</Link>
+            <Link to="#">Reviews</Link>
+          </div>
+          <div className="ms-auto p-2">
+            {!user ? (
+              <button
+                className="btn-noob-game"
+                onClick={() => {
+                  dispatch(setAuthModalOpen(true));
+                  dispatch(setFormType("sign-in"));
+                }}
+              >
+                Sign In / Up
+              </button>
+            ) : (
+              <button
+                className="btn-noob-game"
+                onClick={() => {
+                  dispatch(setUser(null));
+                }}
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
       ) : (
-        <div className="navbar navbar-expand-xljustify-content-start bg-black">
+        <div className="navbar navbar-expand-xljustify-content-start">
           <div className="p-4 d-flex justify-content-start">
-            <img src="http://fisoft.co.uk/img/logo.png" alt="Noob-Game" />
+            <Link to="/">
+              <img src="/noobgame.png" alt="Noob-Game" />
+            </Link>
           </div>
           <div className="d-flex justify-content-end p-4">
-            <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+            <button
+              onClick={() => setIsMenuToggled(!isMenuToggled)}
+              className="mobile-menu-btn-open"
+            >
               <FA icon={faBars} />
             </button>
           </div>
@@ -36,19 +84,23 @@ const Navbar = () => {
       )}
 
       {!isAboveMediumScreens && isMenuToggled && (
-        <div className="d-flex flex-column mb-3 bg-black h-100 w-50 position-absolute end-0 top-0">
+        <div className="mobile-menu d-flex flex-column mb-3 w-50 position-absolute end-0 top-0">
           <div className="d-flex justify-content-end p-4 align-items-end mt-2">
-            <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+            <button
+              onClick={() => setIsMenuToggled(!isMenuToggled)}
+              className="mobile-menu-btn-close"
+            >
               <FA icon={faX} />
             </button>
           </div>
-          <div className="d-flex align-items-start ml-auto flex-column gap-1 m-3 mt-0">
-            <Link to="">Home</Link>
-            <Link to="/">Games</Link>
-            <Link to="/">Reviews</Link>
+          <div className="menu-item d-flex align-items-start ms-auto flex-column mt-0">
+            <Link to="/">Home</Link>
+            <Link to="/games">Games</Link>
+            <Link to="#">Reviews</Link>
           </div>
         </div>
       )}
+      <AuthModal />
     </div>
   );
 };

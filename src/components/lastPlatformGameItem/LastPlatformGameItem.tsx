@@ -7,6 +7,7 @@ import { FontAwesomeIcon as FA } from "@fortawesome/react-fontawesome";
 import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { faAngleRight, faDesktop } from "@fortawesome/free-solid-svg-icons";
 import "./LastPlatformGameItem.scss";
+import { Link } from "react-router-dom";
 
 type Props = {
   platform: string;
@@ -39,7 +40,7 @@ const LastPlatformGameItem = ({ platform }: Props) => {
       const { response, err } = await noobgameApi.lastPlatformGames({
         id: platformId,
       });
-      console.log(response);
+
       if (response) setLastPlatformGamesList(response);
       if (err) toast.error(err);
     };
@@ -73,7 +74,11 @@ const LastPlatformGameItem = ({ platform }: Props) => {
       </div>
       <div className="game mt-4">
         {lastPlatformGamesList.map((game, index) => (
-          <div className="d-flex justify-content-start mt-2" key={index}>
+          <Link
+            to={`/gameDetail/${game.id}`}
+            className="d-flex justify-content-start mt-2"
+            key={index}
+          >
             <div className="game-image col-xs-4">
               <img
                 src={`https://images.igdb.com/igdb/image/upload/t_cover_small/${game.cover.value.imageId}.jpg`}
@@ -81,10 +86,10 @@ const LastPlatformGameItem = ({ platform }: Props) => {
               />
             </div>
             <div className="game-body col-xs-8 align-self-center">
-              <a href="#">{game.name}</a>
+              <a href={`/gameDetail/${game.id}`}>{game.name}</a>
               <span>{Utils.formatDate(game.firstReleaseDate)}</span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

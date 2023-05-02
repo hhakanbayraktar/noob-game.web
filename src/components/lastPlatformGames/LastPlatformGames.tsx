@@ -7,14 +7,14 @@ const LastPlatformGames = () => {
       <div className="">
           <Underscratch text="COMING SOON" logo={null}/>
       </div>
-      <div className="d-flex justify-content-between">
-        <div className="col-xl-4">
+      <div className="d-flex justify-content-between flex-wrap">
+        <div className="col-md-4">
           <LastPlatformGameItem platform="pc" />
         </div>
-        <div className="col-xl-4">
+        <div className="col-md-4">
           <LastPlatformGameItem platform="ps5" />
         </div>
-        <div className="col-xl-4">
+        <div className="col-md-4">
           <LastPlatformGameItem platform="xbox" />
         </div>
       </div>

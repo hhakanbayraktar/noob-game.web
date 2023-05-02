@@ -1,0 +1,217 @@
+.content {
+  .image {
+    height: 500px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      margin-top: -5%;
+      background-size: cover;
+      background-position: center center;
+      -moz-filter: blur(5px);
+      -webkit-filter: blur(5px);
+      filter: blur(5px);
+      transform: scale(1.1);
+    }
+  }
+
+  .game-container {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -200px;
+    position: relative;
+
+    .game-row {
+      .cover {
+        .information {
+          margin: 20px 0px;
+
+          .companies,
+          .game-engines,
+          .game-modes,
+          .game-player-perspectives,
+          .genre,
+          .release-date,
+          .alternative-names {
+            margin: 15px 0px;
+            font-size: 14px;
+
+            .category {
+              font-weight: 600;
+            }
+          }
+
+          .release-date {
+            .platform {
+              font-weight: 600;
+            }
+            hr {
+              margin: 0.5rem 0;
+            }
+          }
+
+          .alternative-names {
+            .language {
+              font-weight: 600;
+            }
+            hr {
+              margin: 0.5rem 0;
+            }
+          }
+
+          .alternative-names,
+          .release-date {
+            div:last-child {
+              hr {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+
+      .summary {
+        margin: 0px 20px;
+        .title-container {
+          height: 200px;
+          .gamepage-title-wrapper {
+            .banner-title {
+              font-size: 36px;
+              font-weight: 700;
+              color: white;
+            }
+
+            .banner-subheading {
+              font-size: 24px;
+              font-weight: 500;
+              color: rgb(226, 226, 226);
+              margin-block-start: 0.83em;
+              margin-block-end: 0.83em;
+            }
+
+            .banner-subsubheading {
+              font-size: 18px;
+              font-weight: 400;
+              font-style: italic;
+              color: rgb(226, 226, 226);
+              text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+            }
+          }
+        }
+
+        .details {
+          margin-top: 20px;
+
+          .summary,
+          .companies,
+          .storyline,
+          .gallery {
+            margin: 20px 0px;
+
+            .category {
+              font-weight: 600;
+            }
+          }
+
+          .platforms {
+            margin: 20px 0px;
+            img {
+              width: 80px;
+              margin-right: 20px;
+            }
+          }
+
+          .age-rating {
+            margin: 20px 0px;
+            img {
+              width: 60px;
+              margin-left: 10px;
+            }
+          }
+        }
+
+        .game-rate {
+          position: absolute;
+          top: 0px;
+          right: 50px;
+
+          .CircularProgressbar {
+            width: 150px;
+            margin-top: 70%;
+            background-color: white;
+            padding: 20px;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    .image {
+      height: 300px;
+
+      img {
+        width: 768px;
+      }
+    }
+    .game-rate {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .content {
+    .image {
+      height: 300px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .content {
+    .image {
+      height: 400px;
+    }
+
+    .game-container {
+      max-width: 1320px;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .content {
+    .game-container {
+      max-width: 1320px;
+    }
+  }
+}
+
+.swiper-container {
+  width: 480px;
+}
+
+@media screen and (min-width: 640px) {
+  .swiper-container {
+    width: 640px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 768px;
+  }
+}

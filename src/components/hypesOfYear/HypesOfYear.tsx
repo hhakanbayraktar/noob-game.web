@@ -10,9 +10,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 type hypesOfYearType = {
-  id: string;
+  id: number;
   name: string;
-  aggregatedRating: number;
+  totalRating: number;
   cover: string;
   genre: string;
 };
@@ -44,15 +44,29 @@ const HypesOfYear = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          slidesPerView={5}
+          breakpoints={{
+            480: {
+              width: 480,
+              slidesPerView: 2,
+            },
+            768: {
+              width: 768,
+              slidesPerView: 3,
+            },
+            992: {
+              width: 992,
+              slidesPerView: 4,
+            },
+          }}
         >
           {games.map((game, index) => (
-            <SwiperSlide>
+            <SwiperSlide key={index}>
               <HypesOfYearItem
                 key={index}
+                id={game.id}
                 name={game.name}
                 cover={game.cover}
-                aggregatedRating={game.aggregatedRating}
+                totalRating={game.totalRating}
                 genre={game.genre}
               />
             </SwiperSlide>

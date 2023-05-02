@@ -6,6 +6,8 @@ const noobgameEndpoints = {
   popularGames: "popularGames",
   hypesOfYear: "hypesOfYear",
   lastPlatformGames: ({ id }) => `lastPlatformGames?id=${id}`,
+  top20GamesAllTimes: "top20GamesAllTimes",
+  gameDetail: ({ id }) => `gameDetail?id=${id}`,
 };
 
 const noobgameApi = {
@@ -65,6 +67,32 @@ const noobgameApi = {
     try {
       const response = await publicClient
         .get(noobgameEndpoints.lastPlatformGames({ id }))
+        .then((response) => {
+          return response.data;
+        });
+
+      return {response};
+    } catch (err) {
+      return err.message;
+    }
+  },
+  top20GamesAllTimes: async () => {
+    try {
+      const response = await publicClient
+        .get(noobgameEndpoints.top20GamesAllTimes)
+        .then((response) => {
+          return response.data;
+        });
+
+        return {response};
+    } catch (err) {
+      return err.message;
+    }
+  },
+  gameDetail: async ({ id }) => {
+    try {
+      const response = await publicClient
+        .get(noobgameEndpoints.gameDetail({ id }))
         .then((response) => {
           return response.data;
         });

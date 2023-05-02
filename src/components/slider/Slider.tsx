@@ -2,11 +2,14 @@ import noobgameApi from "../../api/noobgame.api.jsx";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore,  { Autoplay } from "swiper";
+import SwiperCore, { Autoplay } from "swiper";
 import "swiper/css";
 import "./Slider.scss";
+import Utils from "../../utils/Utils.js";
+import { Link } from "react-router-dom";
 
 type gameList = {
+  id: number;
   name: string;
   artworks: {
     values: [
@@ -15,7 +18,7 @@ type gameList = {
       }
     ];
   };
-  aggregatedRating: number;
+  firstReleaseDate: string;
 };
 
 const Slider = () => {
@@ -24,7 +27,7 @@ const Slider = () => {
 
   useEffect(() => {
     const getGameList = async () => {
-      const {response, err} = await noobgameApi.topGames();
+      const { response, err } = await noobgameApi.topGames();
 
       if (response) setGames(response);
       if (err) toast.error(err);
@@ -38,8 +41,8 @@ const Slider = () => {
         grabCursor={true}
         loop={true}
         autoplay={{
-            delay: 3000,
-            disableOnInteraction: false
+          delay: 3000,
+          disableOnInteraction: false,
         }}
         style={{ width: "100%" }}
         slidesPerView={1}
@@ -54,9 +57,20 @@ const Slider = () => {
                   alt=""
                 />
               </div>
-                <div className="slider-text">
-                  {game.name}
+              <div className="slider-text">
+                <div className="game-name">{game.name}</div>
+                <div className="release-date">
+                  <b>Release Date:</b>{" "}
+                  <span>{Utils.formatDate(game.firstReleaseDate)}</span>
                 </div>
+
+                <Link
+                  to={`/gameDetail/${game.id}`}
+                  className="btn-noob-game"
+                >
+                  Details
+                </Link>
+              </div>
             </SwiperSlide>
           ) : (
             ""
