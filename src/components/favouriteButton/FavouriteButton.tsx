@@ -1,6 +1,5 @@
 import "./FavouriteButton.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { deleteFavourite, addFavourite } from "../../redux/reducers/UserSlice";
@@ -9,37 +8,55 @@ import { FontAwesomeIcon as FA } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { toast } from "react-toastify";
+import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
+
+type FavouriteButtonProps = {
+  gameId: number;
+  gameName: string;
+};
 
 type State = {
   user: {
     user: {
       token: string;
       expireOn: Date;
+      userDetail: {
+        id: string;
+        name: string;
+        surname: string;
+        email: string;
+      };
     };
     favourites: number[];
   };
 };
 
-const FavouriteButton = () => {
+type StateSignalR = {
+  signalR: {
+    hubConn: any;
+  };
+};
+
+const FavouriteButton = ({ gameId, gameName }: FavouriteButtonProps) => {
   const dispatch = useDispatch();
-  const { id } = useParams();
   const [isFavourite, setIsFavourite] = useState(false);
   const [onRequest, setOnRequest] = useState(false);
   const { user, favourites } = useSelector((state: State) => state.user);
+  const { hubConn } = useSelector((state: StateSignalR) => state.signalR);
 
   useEffect(() => {
     const isFavouriteGame = async () => {
-      if (favourites.includes(parseInt(id as string) as number))
-        setIsFavourite(true);
-        console.log("Initial",isFavourite)
+      if (user) {
+        if (favourites.includes(gameId)) {
+          setIsFavourite(true);
+        }
+      }
     };
     isFavouriteGame();
-  }, []);
+  }, [favourites]);
 
   const onFavouriteClick = async () => {
     if (onRequest) return;
-
-    let gameId = parseInt(id as string) as number;
 
     setOnRequest(true);
 
@@ -51,21 +68,28 @@ const FavouriteButton = () => {
       if (response) toast.success(response.message);
       if (err) toast.error(err);
 
-      setIsFavourite(false);
-      console.log("isfav Del:", isFavourite);
       dispatch(deleteFavourite(gameId));
+      setIsFavourite(false);
     } else {
       const { response, err } = await userApi.addFavourite({ gameId: gameId });
 
       if (response) toast.success(response.message);
       if (err) toast.error(err);
 
-      setIsFavourite(true);
-      console.log("isfav Add:", isFavourite);
       dispatch(addFavourite(gameId));
+      sendMsg();
+      setIsFavourite(true);
     }
 
     setOnRequest(false);
+  };
+
+  const sendMsg = async () => {
+    if (hubConn) {
+      hubConn
+        .invoke("SendMessage", `${user.userDetail.name} ${user.userDetail.surname} added ${gameName} to favorites`)
+        .then((res: any) => {console.log(res)});
+    }
   };
 
   return (

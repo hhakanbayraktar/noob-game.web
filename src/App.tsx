@@ -6,59 +6,13 @@ import {
   useRouteError,
 } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
 import Games from "./pages/games/Games";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import GameDetail from "./pages/gameDetail/GameDetail";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setFavourites, setUser } from "./redux/reducers/UserSlice";
-import { useEffect } from "react";
-import userApi from "./api/user.api";
-
-type State = {
-  user: {
-    user: {
-      token: string;
-      expireOn: Date;
-    };
-  };
-};
+import MainLayout from "./layout/MainLayout";
 
 function App() {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state:State) => state.user);
-
-  useEffect(() => {
-    const authUser = async () => {
-      const user = localStorage.getItem("user");
-      if (user) {
-        const userJson = JSON.parse(user);
-        if (new Date(userJson.expireOn) > new Date()) {
-          dispatch(setUser(userJson));
-        } else {
-          localStorage.removeItem("user");
-          dispatch(setUser(null));
-        }
-      } else dispatch(setUser(null));
-    };
-
-    authUser();
-  }, [dispatch]);
-
-  useEffect(() => {
-    const getFavorites = async () => {
-      const { response, err } = await userApi.userFavourites();
-
-      if (response) dispatch(setFavourites(response));
-      if (err) toast.error(err.message);
-    };
-
-    if (user) getFavorites();
-    if (!user) dispatch(setFavourites([]));
-  }, [user, dispatch]);
-
   const Layout = () => {
     return (
       <div className="App">
@@ -71,9 +25,7 @@ function App() {
           pauseOnFocusLoss
           pauseOnHover
         />
-        <Navbar />
-        <Outlet />
-        <Footer />
+        <MainLayout />
       </div>
     );
   };

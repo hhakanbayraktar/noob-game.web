@@ -86,8 +86,8 @@ const LastPlatformGameItem = ({ platform }: Props) => {
               />
             </div>
             <div className="game-body col-xs-8 align-self-center">
-              <a href={`/gameDetail/${game.id}`}>{game.name}</a>
-              <span>{Utils.formatDate(game.firstReleaseDate)}</span>
+              <div className="game-name">{game.name}</div>
+              <div className="date">{Utils.formatDate(game.firstReleaseDate)}</div>
             </div>
           </Link>
         ))}

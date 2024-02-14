@@ -18,21 +18,14 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import FavouriteButton from "../../components/favouriteButton/FavouriteButton";
-
-type State = {
-  user: {
-    user: {
-      token: string;
-      expireOn: Date;
-    };
-  };
-};
+import Button from "react-bootstrap/esm/Button";
+import { setFavourites } from "../../redux/reducers/UserSlice";
+import userApi from "../../api/user.api";
 
 const GameDetail = () => {
-  const dispatch = useDispatch();
   const { id } = useParams();
 
   const [photoShow, setPhotoShow] = useState(-1);
@@ -298,7 +291,10 @@ const GameDetail = () => {
                   trailColor: "#d6d6d6",
                 })}
               />
-              <FavouriteButton />
+              <FavouriteButton
+                gameId={parseInt(id as string) as number}
+                gameName={game?.name as string}
+              />
             </div>
           </div>
         </div>

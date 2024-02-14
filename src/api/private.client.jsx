@@ -1,8 +1,8 @@
 import axios from "axios";
 import queryString from "query-string";
 
-//const baseURL = "https://localhost:7263/";
-const baseURL = "http://noobgame.fisoft.co.uk/";
+const baseURL = "http://localhost:5107/";
+//const baseURL = "http://noobgame.fisoft.co.uk/";
 
 const privateClient = axios.create({
   baseURL,
@@ -21,7 +21,7 @@ privateClient.interceptors.request.use(async (config) => {
       window.location.reload();
       console.log("Logout")
     } else {
-      console.log("Api Request")
+      console.log("Api Request: /", config.url)
       return {
         ...config,
         headers: {

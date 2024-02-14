@@ -40,7 +40,6 @@ const Navbar = () => {
           <div className="menu-item p-2 d-flex gap-3">
             <Link to="/">Home</Link>
             <Link to="/games">Games</Link>
-            <Link to="#">Reviews</Link>
           </div>
           <div className="ms-auto p-2">
             {!user ? (
@@ -85,18 +84,41 @@ const Navbar = () => {
 
       {!isAboveMediumScreens && isMenuToggled && (
         <div className="mobile-menu d-flex flex-column mb-3 w-50 position-absolute end-0 top-0">
-          <div className="d-flex justify-content-end p-4 align-items-end mt-2">
-            <button
-              onClick={() => setIsMenuToggled(!isMenuToggled)}
-              className="mobile-menu-btn-close"
-            >
-              <FA icon={faX} />
-            </button>
+          <div className="d-flex">
+            <div className="justify-content-start pt-4">
+              {!user ? (
+                <button
+                  className="btn-noob-game"
+                  onClick={() => {
+                    dispatch(setAuthModalOpen(true));
+                    dispatch(setFormType("sign-in"));
+                  }}
+                >
+                  Sign In / Up
+                </button>
+              ) : (
+                <button
+                  className="btn-noob-game"
+                  onClick={() => {
+                    dispatch(setUser(null));
+                  }}
+                >
+                  Logout
+                </button>
+              )}
+            </div>
+            <div className="ms-auto p-4 mt-2">
+              <button
+                onClick={() => setIsMenuToggled(!isMenuToggled)}
+                className="mobile-menu-btn-close"
+              >
+                <FA icon={faX} />
+              </button>
+            </div>
           </div>
-          <div className="menu-item d-flex align-items-start ms-auto flex-column mt-0">
+          <div className="menu-item d-flex align-items-start flex-column mt-0">
             <Link to="/">Home</Link>
             <Link to="/games">Games</Link>
-            <Link to="#">Reviews</Link>
           </div>
         </div>
       )}

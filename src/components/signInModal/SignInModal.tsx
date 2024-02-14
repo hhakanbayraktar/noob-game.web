@@ -40,6 +40,7 @@ const SignInModal = () => {
     onSubmit: async (values) => {
       setErrorMessage("");
 
+      console.log("sign in")
       const { response, err } = await userApi.createToken(values);
 
       if (response) {

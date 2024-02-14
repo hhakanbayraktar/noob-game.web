@@ -4,6 +4,7 @@ export const AuthModalSlice = createSlice({
   name: "AuthModal",
   initialState: {
     authModalOpen: false,
+    test2: false,
   },
   reducers: {
     setAuthModalOpen: (state = false, action) => {

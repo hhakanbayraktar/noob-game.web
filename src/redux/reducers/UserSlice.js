@@ -23,7 +23,7 @@ export const UserSlice = createSlice({
       state.favourites = [...state.favourites, action.payload];
     },
     deleteFavourite: (state, action) => {
-      console.log("delete", action.payload)
+      console.log("delete", action.payload);
       state.favourites = [...state.favourites].filter(
         (e) => e !== action.payload
       );

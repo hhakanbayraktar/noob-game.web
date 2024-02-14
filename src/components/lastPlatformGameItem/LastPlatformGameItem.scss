@@ -21,18 +21,17 @@
       font-size: 14px;
       padding-right: 5px;
       
-      a {
+      .game-name {
         text-decoration: none;
         font-weight: 700;
         letter-spacing: 1px;
         position: relative;
-        padding-bottom: 10px;
-        margin-bottom: 40px;
+        padding-bottom: 5px;
         text-transform: uppercase;
         color: #10af65;
       }
 
-      span {
+      .date {
         display: block;
         color: black;
       }
